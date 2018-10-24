@@ -1,0 +1,495 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.js"></script>
+    <style type="text/css">
+            /*!
+       * Start Bootstrap - 1 Col Portfolio (https://startbootstrap.com/template-overviews/1-col-portfolio)
+       * Copyright 2013-2018 Start Bootstrap
+       * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-1-col-portfolio/blob/master/LICENSE)
+       */
+
+      body {
+        background-color: #eeeeee;
+        margin: 0;
+      }
+
+
+      .pagination {
+        margin-bottom: 15px;
+      }
+
+      #infinite-list {
+        /* We need to limit the height and show a scrollbar */
+        width: 100%;
+        height: 100vh;
+        overflow: auto;
+
+      }
+
+      .preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1999999999;
+}
+
+.preloader.immune {
+  bottom: 0;
+}
+
+.preloader.white {
+  background-color: rgba(255, 255, 255, .3);
+}
+
+.preloader.black {
+  background-color: rgba(1, 1, 1, .3);
+}
+
+.preloader > i.radial-loader:not(:required) {
+  -moz-animation: radial-loader .5s infinite linear;
+  -webkit-animation: radial-loader .5s infinite linear;
+  animation: radial-loader .5s infinite linear;
+  border-color: #ea6052;
+  border-style: solid;
+  border-width: 2px;
+  border-right-color: transparent;
+  border-radius: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin: 10px;
+  overflow: hidden;
+  width: 10px;
+  height: 10px;
+}
+
+.preloader > span.loading-bar {
+  -moz-animation: loading-bar 3s 1;
+  -webkit-animation: loading-bar 3s 1;
+  animation: loading-bar 3s 1;
+  display: block;
+  height: 5px;
+  background-color: #ea6052;
+  opacity: 0;
+  transition: width .5s;
+}
+
+.preloader > span.loading-bar.red-colored {
+  background-color: #ea6052;
+}
+
+.preloader > .red-colored.radial-loader {
+  border-color: #ea6052 !important;
+  border-right-color: transparent !important;
+}
+
+.preloader > span.loading-bar.blue-colored {
+  background-color: #3498db;
+}
+
+.preloader > .blue-colored.radial-loader {
+  border-color: #3498db !important;
+  border-right-color: transparent !important;
+}
+
+.preloader > span.loading-bar.green-colored {
+  background-color: #2ecc71;
+}
+
+.preloader > .green-colored.radial-loader {
+  border-color: #2ecc71 !important;
+  border-right-color: transparent !important;
+}
+
+.preloader > span.loading-bar.yellow-colored {
+  background-color: #f1c40f;
+}
+
+.preloader > .yellow-colored.radial-loader {
+  border-color: #f1c40f !important;
+  border-right-color: transparent !important;
+}
+/* Animations */
+
+@-moz-keyframes loading-bar {
+  0% {
+    width: 0%;
+    opacity: 1;
+  }
+  90% {
+    width: 90%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes loading-bar {
+  0% {
+    width: 0%;
+    opacity: 1;
+  }
+  90% {
+    width: 90%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes loading-bar {
+  0% {
+    width: 0%;
+    opacity: 1;
+  }
+  90% {
+    width: 90%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes radial-loader {
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes radial-loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes radial-loader {
+  0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.timeline-item {
+    background: #fff;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    padding: 12px;
+    margin: 0 auto;
+    max-width: 472px;
+    min-height: 700px;
+}
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+
+.animated-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    height: 96px;
+    position: relative;
+}
+.background-masker {
+    background: #fff;
+    position: absolute;
+}
+
+/* Every thing below this is just positioning */
+
+.background-masker.header-top,
+.background-masker.header-bottom,
+.background-masker.subheader-bottom {
+    top: 0;
+    left: 40px;
+    right: 0;
+    height: 10px;
+}
+
+.background-masker.header-left,
+.background-masker.subheader-left,
+.background-masker.header-right,
+.background-masker.subheader-right {
+    top: 10px;
+    left: 40px;
+    height: 8px;
+    width: 10px;
+}
+
+.background-masker.header-bottom {
+    top: 18px;
+    height: 6px;
+}
+
+.background-masker.subheader-left,
+.background-masker.subheader-right {
+    top: 24px;
+    height: 6px;
+}
+
+
+.background-masker.header-right,
+.background-masker.subheader-right {
+    width: auto;
+    left: 300px;
+    right: 0;
+}
+
+.background-masker.subheader-right {
+    left: 230px;
+}
+
+.background-masker.subheader-bottom {
+    top: 30px;
+    height: 10px;
+}
+
+.background-masker.content-top,
+.background-masker.content-second-line,
+.background-masker.content-third-line,
+.background-masker.content-second-end,
+.background-masker.content-third-end,
+.background-masker.content-first-end {
+    top: 40px;
+    left: 0;
+    right: 0;
+    height: 6px;
+}
+
+.background-masker.content-top {
+    height:20px;
+}
+
+.background-masker.content-first-end,
+.background-masker.content-second-end,
+.background-masker.content-third-end{
+    width: auto;
+    left: 380px;
+    right: 0;
+    top: 60px;
+    height: 8px;
+}
+
+.background-masker.content-second-line  {
+    top: 68px;
+}
+
+.background-masker.content-second-end {
+    left: 420px;
+    top: 74px;
+}
+
+.background-masker.content-third-line {
+    top: 82px;
+}
+
+.background-masker.content-third-end {
+    left: 300px;
+    top: 88px;
+}
+
+</style>
+  </head>
+
+  <body>
+
+   <!--<ul id="infinite-list"></ul>-->
+
+<div id="infinite-list">
+<script charset="utf-8" src="//www.travelpayouts.com/widgets/c482cf485bdfdb4d2df0c91d60a9558d.js?v=1513" async></script>
+</div>
+<script type="text/javascript">
+
+var listElm = document.querySelector('#infinite-list'); // берем html документ
+
+var nextItem = ''; // создаем пустую переменную темы
+var nextLoad = '';
+var loadContainer = '';
+var iter = 0
+
+
+var loadREsponse = function() {
+
+  $.ajax({
+    type: 'GET',
+    url: 'http://127.0.0.1:8000/tickets',
+    dataType: "json",
+    success: function(data) {
+      loadMore(data)
+    }
+  });
+
+}
+
+loadREsponse()
+var loadMore = function(data) {
+    try {
+      for(i=0; i<1; i++){
+          
+          loadContainer = '<div id="container'+ iter +'"></div>'
+
+          nextLoad = '<div id="preload'+ iter +'" class="timeline-wrapper">'+
+                          '<div class="timeline-item">'+
+                              '<div class="animated-background">'+
+                                  '<div class="background-masker header-top"></div>'+
+                                  '<div class="background-masker header-left"></div>'+
+                                  '<div class="background-masker header-right"></div>'+
+                                  '<div class="background-masker header-bottom"></div>'+
+                                  '<div class="background-masker subheader-left"></div>'+
+                                  '<div class="background-masker subheader-right"></div>'+
+                                  '<div class="background-masker subheader-bottom"></div>'+
+                                  '<div class="background-masker content-top"></div>'+
+                                  '<div class="background-masker content-first-end"></div>'+
+                                  '<div class="background-masker content-second-line"></div>'+
+                                  '<div class="background-masker content-second-end"></div>'+
+                                  '<div class="background-masker content-third-line"></div>'+
+                                  '<div class="background-masker content-third-end"></div>'+
+                              '</div>'+
+                          '</div>'+
+                      '</div>';
+          
+          nextItem =  '<div id="loading'+ iter +'" class="row timeline-item">'+
+                          '<div>'+
+                              '<a href="#">'+
+                                  '<img class="img-fluid rounded mb-3 mb-md-0" src="'+ data[iter].image +'">'+
+                              '</a>'+
+                          '</div>'+
+                          '<div class="col-md-5">'+
+                            '<h3 style="position:relative;">'+ data[iter].title+'</h3>'+
+                            '<p>'+ data[iter].description +'</p>'+
+                            '<a class="btn btn-primary" href="#">смотреть</a>'+
+                          '</div>'+
+                      '</div>';
+      
+      listenPage(iter, loadContainer, nextItem, nextLoad)
+      iter += 1
+      
+      }
+    
+    } catch (err) {
+        console.log('ошибка')
+      }
+}
+
+      
+
+
+var listenPage = function(iter, loadContainer, nextItem, nextLoad){
+    
+    $("#infinite-list").append(loadContainer); 
+    
+    $('#container'+ iter).ready( function() {
+        
+        $("#container" + iter).html(nextLoad);
+        
+        setTimeout(function () {
+          $("#container"+ iter).html(nextItem);
+            
+          }, 1000)
+    });
+}
+
+
+listElm.addEventListener('scroll', function() {
+    if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight){
+        loadREsponse(); 
+    }
+});
+
+//====================================================================
+
+function preloader(immune, background, color) {
+  $("body").prepend('<div class="preloader"><span class="loading-bar"></span><i class="radial-loader"></i></div>');
+
+  if (immune == true) {
+    $("body > div.preloader").addClass('immune');
+  }
+
+  if (background == 'white') {
+    $("body > div.preloader").addClass('white');
+  }
+  
+  else if (background == 'black') {
+    $("body > div.preloader").addClass('black');
+  }
+
+  if (color == 'red') {
+    $("body > div.preloader span.loading-bar").addClass('red-colored');
+    $("body > div.preloader i.radial-loader").addClass('red-colored');
+  } else if (color == 'blue') {
+    $("body > div.preloader span.loading-bar").addClass('blue-colored');
+    $("body > div.preloader i.radial-loader").addClass('blue-colored');
+  } else if (color == 'green') {
+    $("body > div.preloader span.loading-bar").addClass('green-colored');
+    $("body > div.preloader i.radial-loader").addClass('green-colored');
+  } else if (color == 'yellow') {
+    $("body > div.preloader span.loading-bar").addClass('yellow-colored');
+    $("body > div.preloader i.radial-loader").addClass('yellow-colored');
+  }
+  
+$(window).on('load', function() {
+    setTimeout(function() {
+      $('.preloader').fadeOut(1000);
+    }, 1000);
+    setTimeout(function() {
+      $('.preloader').remove();
+    }, 2000);
+    
+  })
+};
+
+preloader(true, 'black', 'red');
+
+
+</script>
+
+  </body>
+
+</html>

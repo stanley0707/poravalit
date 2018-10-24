@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+{% for article in articles %}
+      <div id="vue-instance" class="container">
+      <div class="row">
+        <div  class="col-sm-6" v-for="(post, index) in posts">
+        <div class="card m-4" style="width: 18rem;">
+          <img class="card-img-top" src="https://via.placeholder.com/350x150">
+          <div class="card-body">
+            <h5 class="card-title"><strong>{{ post.title }}</strong></h5>
+            </div>
+          </div>
+        </div>  
+      </div>
+      <mugen-scroll :handler="getPosts" :should-handle="!loading">
+        loading...
+      </mugen-scroll>
+      </div>
+     
+{% endfor %}
+
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript">
+   //$(window).scroll(function() {   
+   //if($(window).scrollTop() + $(window).height() == $(document).height()) {
+  
+   //     $.ajax({
+   //         type: 'GET',
+   //         url: 'http://127.0.0.1:8000/tickets', //Ссылка на вьюху
+   //         dataType: "json",
+   //         data: {'article': 2},  //Здесь можно передать данные в GET запросе, например сколько значений получить 
+   //         success : function (data) {
+   //           var html = '';
+   //              for(i=0; i<data.length; i++){
+   //                  html += '<div class="row"><div class="col-md-7">'+
+   //                            '<a href="#"><img class="img-fluid rounded mb-3 mb-md-0" src="'+ data[i].image+'"></a></div>'+
+   //                             '<div class="col-md-5"><h3>'+ data[i].title+'</h3>'+
+   //                             '<p>'+ data[i].description +'</p><a class="btn btn-primary" href="#">смотреть</a>'+
+   //                             '</div></div><hr>';
+   //              }
+   //              $("#showdata").html(html);
+   //           }
+   //     }); 
+   
+   // }
+   //});
+</script>
+{% endblock script %}
